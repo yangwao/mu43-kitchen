@@ -175,11 +175,25 @@ export const FINISHES = {
     top: 0x3b352e, topRough: 0.38,           // warm dark stone
     backPanel: 0x5a4636,
   },
-  'Deep Forest & Oak': {
-    front: 0x2e3a34, frontRough: 0.6,        // deep green matte
-    tall: 0x8a6a44, tallIsWood: true,        // light rustic oak like the floor
-    islandFront: 0x2e3a34, islandIsWood: false,
-    top: 0xd8d2c6, topRough: 0.32,           // light veined stone
-    backPanel: 0x24302b,
+  'Night Blue & Oak': {
+    front: 0x2b3442, frontRough: 0.6,        // deep blue matte — dramatic but warm w/ oak
+    tall: 0x84613c, tallIsWood: true,        // honey oak echoing the floor
+    islandFront: 0x2b3442, islandIsWood: false,
+    top: 0xd9d4ca, topRough: 0.32,           // light veined stone
+    backPanel: 0x232b36,
+  },
+  'Taupe & Dark Oak': {
+    front: 0x6f665c, frontRough: 0.64,       // taupe matte
+    tall: 0x33281f, tallIsWood: true,        // smoked/charred oak decor
+    islandFront: 0x6f665c, islandIsWood: false,
+    top: 0x22201d, topRough: 0.35,           // near-black warm stone
+    backPanel: 0x3d332a,
+  },
+  'Sand & Travertine': {
+    front: 0xb8a98f, frontRough: 0.66,       // warm sand matte, tone-on-tone
+    tall: 0xb8a98f, tallIsWood: false,
+    islandFront: 0xb8a98f, islandIsWood: false,
+    top: 0xcfc4b0, topRough: 0.42,           // travertine-look
+    backPanel: 0x8a7a62,
   },
 };
