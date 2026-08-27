@@ -192,9 +192,10 @@ const fl = gui.addFolder('Hue pendants');
 fl.addColor(S, 'pendantColor').name('color').onChange(rb);
 fl.add(S, 'pendantIntensity', 0, 1.5, 0.05).name('brightness').onChange(rb);
 const huePresets = {
-  'Warm dinner (2200K)': () => { S.pendantColor = '#ffb46b'; S.pendantIntensity = 0.8; rb(); syncGui(); },
   'Neutral cooking (4000K)': () => { S.pendantColor = '#ffe9c9'; S.pendantIntensity = 1.2; rb(); syncGui(); },
-  'Party violet': () => { S.pendantColor = '#b47aff'; S.pendantIntensity = 1.0; rb(); syncGui(); },
+  'Warm dinner (2200K)': () => { S.pendantColor = '#ffb46b'; S.pendantIntensity = 0.8; rb(); syncGui(); },
+  'Evening amber (1800K, low blue)': () => { S.pendantColor = '#ff9d3c'; S.pendantIntensity = 0.55; rb(); syncGui(); },
+  'Late night red (melatonin-safe)': () => { S.pendantColor = '#ff2d1a'; S.pendantIntensity = 0.32; rb(); syncGui(); },
 };
 for (const name of Object.keys(huePresets)) fl.add(huePresets, name);
 function syncGui() { gui.controllersRecursive().forEach(c => c.updateDisplay()); }
