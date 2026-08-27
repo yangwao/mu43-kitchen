@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.playwright-mcp/
+artifact.html
+
+# private documents & site photos — not for the public repo
+*.pdf
+IMG*.jpg
+23881*.jpg
