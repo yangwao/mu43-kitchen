@@ -46,10 +46,14 @@ export const APPLIANCES = {
     sideGap: 5, topGap: 10, // ventilation clearances
     label: 'Samsung RS8000 91×178, plumbed dispenser',
   },
-  hob: { // BORA X Pure: 830×515, 199mm below top, fits 60cm cabinet
-    w: 83, d: 51.5, cutW: 81, minSideWall: 5, minCabinet: 90,
-    label: 'BORA X Pure 83cm venting hob',
+  dishwasher: { // Bosch/Siemens fully integrated 60: niche 815–875 (std) / 865–925 (XXL)
+    w: 60, nicheStd: [81.5, 87.5], nicheXXL: [86.5, 92.5],
+    label: '60cm fully integrated DW',
   },
+  sink: { // user decision 2026-08-27: Blanco Silgranit matte black single bowl
+    w: 86, d: 44, label: 'Blanco 80/90 matte black single bowl, flexible rails, boiling-water tap',
+  },
+  ovenTower: { w: 60, label: 'Oven + combi-microwave tower' },
 };
 
 // Hob options — user decision 2026-08-27: going with Bosch, 70 or 90 cm
@@ -66,14 +70,6 @@ export const HOBS = {
     w: 83, d: 51.5, minCabinet: 90, venting: true,
     label: 'BORA X Pure 83cm venting hob — cutout 810±2, fits 60cm-deep cabinet',
   },
-  dishwasher: { // Bosch/Siemens fully integrated 60: niche 815–875 (std) / 865–925 (XXL)
-    w: 60, nicheStd: [81.5, 87.5], nicheXXL: [86.5, 92.5],
-    label: '60cm fully integrated DW',
-  },
-  sink: { // workstation sink + Quooker-class tap
-    w: 86, d: 44, label: '86cm workstation sink, boiling-water tap',
-  },
-  ovenTower: { w: 60, label: 'Oven + combi-microwave tower' },
 };
 
 // ---------------------------------------------------------------------------
