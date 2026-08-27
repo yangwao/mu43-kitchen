@@ -11,6 +11,9 @@ npm install
 npm run dev        # → http://localhost:5173
 ```
 
+**Live app (GitHub Pages, auto-deploys from main):**
+https://yangwao.github.io/mu43-kitchen/
+
 Shareable interactive version (same app, single file):
 https://claude.ai/code/artifact/8d132cfb-53f4-4eea-a3ab-0a6199de2e8d
 
