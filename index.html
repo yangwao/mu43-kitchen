@@ -30,6 +30,28 @@
     }
     #brand b { font-weight: 700; }
     #brand small { opacity: 0.6; display: block; font-size: 11px; }
+    #checks h3 { cursor: pointer; }
+    #checks.collapsed { max-height: none; }
+    #checks.collapsed .row, #checks.collapsed .note { display: none; }
+
+    /* ---------- mobile ---------- */
+    @media (max-width: 768px) {
+      #brand { left: 8px; top: 8px; right: calc(46vw + 14px); padding: 6px 10px; font-size: 12px; }
+      #brand small { font-size: 10px; }
+      #notes { left: 8px; right: 8px; top: 56px; width: auto; max-height: 55vh; z-index: 12; }
+      #checks {
+        left: 8px; right: 8px; bottom: 8px; width: auto;
+        max-height: 45vh; padding: 8px 12px; font-size: 12px;
+      }
+      #checks h3 { margin-bottom: 4px; }
+      #checks h3::after { content: ' ▾'; opacity: 0.6; }
+      #checks.collapsed h3::after { content: ' ▸'; }
+      .lil-gui.lil-root {
+        --width: 46vw; --widget-height: 26px; font-size: 11.5px;
+        max-height: 60vh; overflow-y: auto; overscroll-behavior: contain;
+      }
+      .lil-gui .lil-title { font-size: 12px; }
+    }
     #notes {
       position: fixed; left: 14px; top: 76px; z-index: 11;
       width: 340px; max-height: 66vh; overflow-y: auto;

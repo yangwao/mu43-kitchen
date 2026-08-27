@@ -211,6 +211,16 @@ for (const name of Object.keys(PRESETS)) {
 }
 
 // ---------------------------------------------------------------- boot
+// mobile: start with panels collapsed so the model owns the screen
+const isMobile = matchMedia('(max-width: 768px)').matches;
+if (isMobile) {
+  gui.close();
+  CHECK_EL.classList.add('collapsed');
+}
+CHECK_EL.addEventListener('click', (e) => {
+  if (e.target.tagName === 'H3') CHECK_EL.classList.toggle('collapsed');
+});
+
 rebuild();
 applyPreset('Overview');
 // console access: KC.S.aisle = 130; KC.rebuild(); KC.applyPreset('Overview')
