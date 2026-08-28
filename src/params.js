@@ -161,6 +161,28 @@ export const FINISHES = {
     top: 0x141416, topRough: 0.22,           // black marble-look
     backPanel: 0x141416,
   },
+  // "Total black but lighter" family — mono-dark, one notch up each step
+  'Onyx (soft black)': {
+    front: 0x27282b, frontRough: 0.6,
+    tall: 0x27282b, tallIsWood: false,
+    islandFront: 0x27282b, islandIsWood: false,
+    top: 0x1c1d1f, topRough: 0.26,
+    backPanel: 0x1c1d1f,
+  },
+  'Anthracite': {
+    front: 0x36393d, frontRough: 0.62,
+    tall: 0x36393d, tallIsWood: false,
+    islandFront: 0x36393d, islandIsWood: false,
+    top: 0x2a2c2e, topRough: 0.3,
+    backPanel: 0x2a2c2e,
+  },
+  'Lava (warm black-brown)': {
+    front: 0x38302a, frontRough: 0.62,       // warm undertone — friendliest to the oak floor
+    tall: 0x38302a, tallIsWood: false,
+    islandFront: 0x38302a, islandIsWood: false,
+    top: 0x261f19, topRough: 0.3,
+    backPanel: 0x2b241e,
+  },
   'Greige Soft': {
     front: 0x8d857b, frontRough: 0.65,
     tall: 0x6b5a4c, tallIsWood: true,

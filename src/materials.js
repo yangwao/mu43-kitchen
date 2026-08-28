@@ -18,7 +18,7 @@ function canvasTexture(w, h, draw) {
 export function oakFloorTexture() {
   return canvasTexture(1024, 1024, (ctx) => {
     const rows = 6, plankH = 1024 / rows, segW = 512;
-    ctx.fillStyle = '#b48a58';
+    ctx.fillStyle = '#9c7343';
     ctx.fillRect(0, 0, 1024, 1024);
     let seed = 13;
     const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
@@ -26,8 +26,9 @@ export function oakFloorTexture() {
       const off = (r % 2) * segW * 0.6 + rnd() * 160;
       for (let c = -1; c < 3; c++) {
         const x = c * segW + off;
-        const base = 150 + rnd() * 45;
-        ctx.fillStyle = `rgb(${base + 38},${Math.round(base * 0.72 + 20)},${Math.round(base * 0.42)})`;
+        // darker, matched to the July site photos (planner previously read too light)
+        const base = 124 + rnd() * 42;
+        ctx.fillStyle = `rgb(${base + 30},${Math.round(base * 0.70 + 14)},${Math.round(base * 0.40)})`;
         ctx.fillRect(x + 1, r * plankH + 1, segW - 2, plankH - 2);
         // grain along plank length
         ctx.strokeStyle = `rgba(96,60,26,${0.10 + rnd() * 0.12})`;
