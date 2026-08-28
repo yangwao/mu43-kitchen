@@ -196,4 +196,25 @@ export const FINISHES = {
     top: 0xcfc4b0, topRough: 0.42,           // travertine-look
     backPanel: 0x8a7a62,
   },
+  'Slate & Light Oak': {                     // GA: Savona 491 skrilasto siva + svetel hrast
+    front: 0x4a4d50, frontRough: 0.62,       // slate grey — softer than graphite in south light
+    tall: 0x9a7b52, tallIsWood: true,        // light oak close to the floor tone
+    islandFront: 0x4a4d50, islandIsWood: false,
+    top: 0xd5d0c8, topRough: 0.34,
+    backPanel: 0x3f4245,
+  },
+  'Mocha & Cream': {                         // GA: Luna 605 topli rjavi toni
+    front: 0x6e523f, frontRough: 0.64,       // warm mocha matte — the 2026 trend tone
+    tall: 0x2e241c, tallIsWood: true,        // near-black smoked oak
+    islandFront: 0x6e523f, islandIsWood: false,
+    top: 0xd8cfc0, topRough: 0.4,            // cream travertine-look
+    backPanel: 0x4a382b,
+  },
+  'White & Walnut': {                        // GA: Liberty 967 alpsko bela ultra mat + oreh 840
+    front: 0xe8e5df, frontRough: 0.6,        // white ultra-mat tall wall
+    tall: 0xe8e5df, tallIsWood: false,
+    islandFront: 0x4a3527, islandIsWood: true, // walnut island = the hero piece
+    top: 0x2b2825, topRough: 0.32,           // dark stone top for the drama
+    backPanel: 0x4a3527,
+  },
 };
