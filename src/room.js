@@ -177,23 +177,6 @@ export function buildRoom(M) {
   grill.position.set(0.45, 0.93, te + 0.85); grill.castShadow = true; g.add(grill);
   box(0.34, 0.012, 0.42, M.steel, 0.45, 0.925, te + 1.75, g); // outdoor sink
 
-  // carport on the east side, near the entry corner
-  const cpX = KB_W + 0.25, cpW = 3.1, cpZ0 = NORTH + 0.2, cpL = 5.0;
-  box(cpW, 0.02, cpL, M.terrace, cpX + cpW / 2, -0.04, cpZ0 + cpL / 2, g); // paving
-  box(cpW, 0.12, cpL, M.frame, cpX + cpW / 2, 2.45, cpZ0 + cpL / 2, g);   // flat roof
-  for (const [px, pz] of [[cpX + 0.1, cpZ0 + 0.1], [cpX + cpW - 0.1, cpZ0 + 0.1], [cpX + 0.1, cpZ0 + cpL - 0.1], [cpX + cpW - 0.1, cpZ0 + cpL - 0.1]])
-    box(0.1, 2.4, 0.1, M.frame, px, 1.2, pz, g);
-  // simple car under the canopy
-  const carX = cpX + cpW / 2, carZ = cpZ0 + cpL / 2;
-  box(1.85, 0.55, 4.4, M.fabricDark, carX, 0.5, carZ, g);
-  box(1.7, 0.5, 2.3, M.blackGlass, carX, 1.0, carZ + 0.2, g);
-  for (const [dx, dz] of [[-0.8, -1.45], [0.8, -1.45], [-0.8, 1.45], [0.8, 1.45]]) {
-    const wheel = new THREE.Mesh(new THREE.CylinderGeometry(0.33, 0.33, 0.22, 20), M.reveal);
-    wheel.rotation.z = Math.PI / 2;
-    wheel.position.set(carX + dx, 0.33, carZ + dz);
-    g.add(wheel);
-  }
-
   return g;
 }
 
