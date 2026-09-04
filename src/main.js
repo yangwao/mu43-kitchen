@@ -184,6 +184,8 @@ fd.add(S, 'overhang', 20, 45, 1).name('seat overhang').onChange(rb);
 fd.add(S, 'seatSpacing', 60, 100, 1).name('seat spacing').onChange(rb);
 fd.add(S, 'dwLocation', { 'in wall counter (by sink)': 'counter', 'raised in tall column': 'tallWall' }).name('dishwasher').onChange(rb);
 fd.add(S, 'hobChoice', Object.keys(HOBS)).name('hob').onChange(rb);
+fd.add(S, 'upperDepth', 30, 50, 1).name('upper cab depth').onChange(rb);
+fd.add(S, 'ovenPlacement', { 'tower (chest height)': 'tower', 'low, under counter': 'base' }).name('oven').onChange(rb);
 fd.add(S, 'northGap', 40, 110, 1).name('north passage').onChange(rb);
 fd.add(S, 'seatCount', 1, 4, 1).name('stools').onChange(rb);
 fd.add(S, 'seatSide', ['east', 'south']).name('seats face').onChange(rb);

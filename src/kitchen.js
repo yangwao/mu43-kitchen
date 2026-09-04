@@ -87,14 +87,16 @@ function buildTallZone(g, M, S) {
   box(g, M.tall, d, hTall - fh - 0.04, fw, d / 2, fh + 0.04 + (hTall - fh - 0.04) / 2, fz);
   z += fw;
 
-  // --- oven + combi-micro tower (dark glass at ergonomic heights)
-  const tw = APPLIANCES.ovenTower.w * CM;
-  box(g, M.tall, d, hTall, tw, d / 2, hTall / 2, z + tw / 2);
-  box(g, M.blackGlass, 0.02, 0.58, tw - 0.03, face, 1.32, z + tw / 2); // oven ~103–161
-  box(g, M.blackGlass, 0.02, 0.44, tw - 0.03, face, 1.85, z + tw / 2); // combi-micro above
-  frontColumn(g, M, M.tall, { w: tw, yBottom: 0.06, yTop: 0.98, rows: [0.5, 0.5], x: face, z: z + tw / 2, rot: Math.PI / 2 });
-  frontColumn(g, M, M.tall, { w: tw, yBottom: 2.10, yTop: hTall, rows: [1], x: face, z: z + tw / 2, rot: Math.PI / 2 });
-  z += tw;
+  // --- oven tower (single oven at chest height — no microwave), unless the
+  // oven moved down under the counter (variation B2 → longer worktop)
+  if (S.ovenPlacement === 'tower') {
+    const tw = APPLIANCES.ovenTower.w * CM;
+    box(g, M.tall, d, hTall, tw, d / 2, hTall / 2, z + tw / 2);
+    box(g, M.blackGlass, 0.02, 0.58, tw - 0.03, face, 1.32, z + tw / 2); // oven ~103–161
+    frontColumn(g, M, M.tall, { w: tw, yBottom: 0.06, yTop: 0.98, rows: [0.5, 0.5], x: face, z: z + tw / 2, rot: Math.PI / 2 });
+    frontColumn(g, M, M.tall, { w: tw, yBottom: 1.65, yTop: hTall, rows: [0.5, 0.5], x: face, z: z + tw / 2, rot: Math.PI / 2 });
+    z += tw;
+  }
 
   // --- GA-Kuhinje-style INTEGRATED COUNTER NICHE between the towers:
   // base cabinets + worktop (sink + DW) + contrast back panel + wall
@@ -109,27 +111,35 @@ function buildTallZone(g, M, S) {
   box(g, M.carcass, d, ch - top - plinth, cLen, d / 2, plinth + (ch - top - plinth) / 2, czM);
   box(g, M.plinth, d - 0.06, plinth, cLen - 0.04, d / 2 - 0.03, plinth / 2, czM);
   box(g, M.top, d + 0.015, top, cLen + 0.01, (d + 0.015) / 2, ch - top / 2, czM);
-  // niche back panel (contrast) + wall cabinets bridging the towers
+  // niche back panel (contrast) + wall cabinets bridging the towers —
+  // deeper uppers over the sink for glass storage ("expanded from the wall")
+  const upD = S.upperDepth * CM;
   box(g, M.backPanel, 0.025, 1.52 - ch, cLen, 0.013, ch + (1.52 - ch) / 2, czM);
-  box(g, M.tall, 0.35, hTall - 1.54, cLen, 0.175, 1.54 + (hTall - 1.54) / 2, czM);
+  box(g, M.tall, upD, hTall - 1.54, cLen, upD / 2, 1.54 + (hTall - 1.54) / 2, czM);
   const nUp = Math.max(2, Math.round(cLen / 0.6));
   for (let i = 0; i < nUp; i++) {
     const w = cLen / nUp;
-    frontColumn(g, M, M.tall, { w, yBottom: 1.56, yTop: hTall, rows: [1], x: 0.352, z: cz0 + (i + 0.5) * w, rot: Math.PI / 2 });
+    frontColumn(g, M, M.tall, { w, yBottom: 1.56, yTop: hTall, rows: [1], x: upD + 0.002, z: cz0 + (i + 0.5) * w, rot: Math.PI / 2 });
   }
-  // base fronts: sink 90 | DW 60 (if in counter) | drawers
+  // base fronts: sink 90 | DW 60 | oven 60 (when placed low) | drawers
   const dwHere = S.dwLocation === 'counter';
   const cols = [{ w: 0.9, kind: 'sink' }];
   if (dwHere) cols.push({ w: APPLIANCES.dishwasher.w * CM, kind: 'dw' });
+  if (S.ovenPlacement === 'base') cols.push({ w: 0.6, kind: 'oven' });
   let rest = cLen - cols.reduce((a, c) => a + c.w, 0);
   while (rest > 0.05) { const w = Math.min(0.8, rest); cols.push({ w, kind: 'drawers' }); rest -= w; }
   let bz = cz0;
   for (const c of cols) {
     frontColumn(g, M, M.front, {
       w: c.w, yBottom: plinth, yTop: ch - top,
-      rows: c.kind === 'dw' ? [1] : c.kind === 'sink' ? [0.35, 0.65] : [0.4, 0.6],
+      rows: c.kind === 'dw' ? [1] : c.kind === 'sink' ? [0.35, 0.65] : c.kind === 'oven' ? [0.18, 0.82] : [0.4, 0.6],
       x: d + 0.01, z: bz + c.w / 2, rot: Math.PI / 2,
     });
+    if (c.kind === 'oven') {
+      // under-counter oven: dark glass front over the upper zone of the column
+      const oh = (ch - top - plinth) * 0.82 - 0.03;
+      box(g, M.blackGlass, 0.015, oh, c.w - 0.05, d + 0.025, ch - top - oh / 2 - 0.01, bz + c.w / 2);
+    }
     c.z = bz + c.w / 2;
     bz += c.w;
   }

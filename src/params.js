@@ -104,6 +104,8 @@ export const DEFAULTS = {
   openEnd: 85,             // open "breathing" section at the NORTH end (away from windows)
   dwLocation: 'counter',   // 'counter' (in the tall-wall niche) | 'tallWall' (raised column)
   hobChoice: 'Bosch 70 venting (PVQ731F15E)',
+  upperDepth: 42,          // overhead cabinets over the sink counter — deeper for glasses
+  ovenPlacement: 'tower',  // 'tower' (chest height column) | 'base' (low, under counter → longer worktop)
   pendantColor: '#ffd9a0', // Philips Hue pendants over the island — live color
   pendantIntensity: 1.0,   // 0 = off, 1 = full
   northGap: 75,            // passage island → pantry wall (shramba door there)
@@ -134,7 +136,14 @@ export const VARIATIONS = {
   'B — Peninsula at pier': {
     attachSouth: true, aisle: 100, islandLen: 300, islandCabDepth: 87.5, openEnd: 85,
     overhang: 40, seatCount: 3, seatSide: 'east', northGap: 75, dwLocation: 'counter',
-    seatSpacing: 90,
+    seatSpacing: 90, ovenPlacement: 'tower',
+  },
+  'B2 — Oven low, long counter': {
+    // fork of B: no oven tower — oven sits under the counter, so the worktop
+    // right of the sink grows by the tower's 60cm
+    attachSouth: true, aisle: 100, islandLen: 300, islandCabDepth: 87.5, openEnd: 85,
+    overhang: 40, seatCount: 3, seatSide: 'east', northGap: 75, dwLocation: 'counter',
+    seatSpacing: 90, ovenPlacement: 'base',
   },
   'C — Gastro table end': {
     attachSouth: false, aisle: 120, islandLen: 270, islandCabDepth: 80, openEnd: 100,
