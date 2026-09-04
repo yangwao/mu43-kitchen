@@ -152,7 +152,7 @@ export const DEFAULTS = {
   showDims: false,
   showPeople: true,        // 197/186cm silhouettes for scale
   variation: 'B — Peninsula at pier',
-  finish: 'Graphite & Oak',
+  finish: 'Kavna & Bel Beton (GA)',
 };
 
 // Layout variations — each patches the state
@@ -190,6 +190,15 @@ export const VARIATIONS = {
 
 export const FINISHES = {
   // Tuned against the real B2 photos: rustic honey-oak floor, white frames.
+  'Kavna & Bel Beton (GA)': {
+    // user-specified: Xeno Luna 605 "kavnata" (coffee matte) on the whole
+    // tall wall; Xeno Rivoli 891 "bel beton imitacija" on island + worktops
+    front: 0x6b5240, frontRough: 0.64,       // Luna 605 kavna — warm coffee matte
+    tall: 0x6b5240, tallIsWood: false,
+    islandFront: 0xd4d0c9, islandIsWood: false, // Rivoli 891 bel beton
+    top: 0xd8d5ce, topRough: 0.5,            // white concrete look, matte
+    backPanel: 0x54402f,
+  },
   'Graphite & Oak': {
     front: 0x3a3d40, frontRough: 0.62,      // graphite premium-matte
     tall: 0x77572f, tallIsWood: true,        // honey oak decor — echoes the floor
