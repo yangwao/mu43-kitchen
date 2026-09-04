@@ -79,6 +79,14 @@ export const FRIDGES = {
     w: 113.4, caseD: 55, doorD: 2, h: 177, dispenser: 'internal', integrated: true,
     label: 'Liebherr IRBdi 5180 + SIFNdi 5188 — fully flush behind fronts, PLUMBED InfinitySpring + IceMaker',
   },
+  'Bosch KBN96VFE0 built-in 383L': {
+    w: 72, caseD: 55, doorD: 2, h: 194, dispenser: 'none', integrated: true,
+    label: 'Bosch 70cm XXL built-in — 383L (285 fridge + 98 freezer), std 56cm niche = truly flush; no water/ice',
+  },
+  'Liebherr ECBNe 7870 (402L)': {
+    w: 77, caseD: 63.5, doorD: 2, h: 202.7, dispenser: 'internal', integrated: true,
+    label: 'Liebherr ECBNe 7870 — 402L incl BioFresh + plumbed IceMaker, BUT needs a 63.5cm-deep niche (deepen the run) · ~€6k',
+  },
 };
 
 // Hob options — user decision 2026-08-27: going with Bosch, 70 or 90 cm
