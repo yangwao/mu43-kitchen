@@ -56,6 +56,31 @@ export const APPLIANCES = {
   ovenTower: { w: 60, label: 'Oven + combi-microwave tower' },
 };
 
+// Fridge options — Samsung RS8000 turned out too deep (716 incl doors vs the
+// 650 tall-wall line); shallower candidates verified per spec sheets
+export const FRIDGES = {
+  'Samsung RS8000 (deep)': {
+    w: 91.2, caseD: 61, doorD: 10.6, h: 178, dispenser: 'plumbed',
+    label: 'Samsung RS8000 91.2×71.6×178 — plumbed water+ice, but ~7cm proud',
+  },
+  'Hisense RS677N4WIF (slim)': {
+    w: 91, caseD: 57, doorD: 7.6, h: 178.6, dispenser: 'tank',
+    label: 'Hisense RS677N4WIF 91×64.6×178.6 — flush with the 65 wall; tank water, no ice',
+  },
+  'Gorenje NRS9182VB': {
+    w: 90.8, caseD: 59, doorD: 8.9, h: 179.3, dispenser: 'tank',
+    label: 'Gorenje NRS9182VB 90.8×67.9×179.3 — water + ice (tank), ~3cm proud, GA brand',
+  },
+  'Haier Cube 83': {
+    w: 83, caseD: 58, doorD: 8.9, h: 190, dispenser: 'tank',
+    label: 'Haier HCW7819EHMP 83×66.9×190 — French-door, autofill tank, ~2cm proud',
+  },
+  'Liebherr columns (flush)': {
+    w: 113.4, caseD: 55, doorD: 2, h: 177, dispenser: 'internal', integrated: true,
+    label: 'Liebherr IRBdi 5180 + SIFNdi 5188 — fully flush behind fronts, PLUMBED InfinitySpring + IceMaker',
+  },
+};
+
 // Hob options — user decision 2026-08-27: going with Bosch, 70 or 90 cm
 export const HOBS = {
   'Bosch 70 venting (PVQ731F15E)': {
@@ -106,6 +131,7 @@ export const DEFAULTS = {
   hobChoice: 'Bosch 70 venting (PVQ731F15E)',
   upperDepth: 42,          // overhead cabinets over the sink counter — deeper for glasses
   ovenPlacement: 'tower',  // 'tower' (chest height column) | 'base' (low, under counter → longer worktop)
+  fridgeChoice: 'Samsung RS8000 (deep)',
   pendantColor: '#ffd9a0', // Philips Hue pendants over the island — live color
   pendantIntensity: 1.0,   // 0 = off, 1 = full
   northGap: 75,            // passage island → pantry wall (shramba door there)

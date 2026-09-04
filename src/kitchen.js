@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { CM, APPLIANCES, HOBS, ROOM } from './params.js';
+import { CM, APPLIANCES, FRIDGES, HOBS, ROOM } from './params.js';
 import { FRAME } from './room.js';
 
 // All builders work in the logical S2 frame:
@@ -63,7 +63,7 @@ function taps(g, M, x, z, h) {
 // The pantry wall stays free (shramba door there). Fronts face east.
 // ---------------------------------------------------------------------------
 function buildTallZone(g, M, S) {
-  const F = APPLIANCES.fridge;
+  const F = FRIDGES[S.fridgeChoice];
   const d = S.tallDepth * CM, hTall = S.tallHeight * CM;
   const face = d + 0.002;                    // east-facing front plane
   const wallLen = FRAME.KB_D;
@@ -73,18 +73,30 @@ function buildTallZone(g, M, S) {
   box(g, M.tall, d, hTall, 0.10, d / 2, hTall / 2, z + 0.05);
   z += 0.10;
 
-  // --- Samsung fridge: case recessed to the wall, doors proud of tall fronts
+  // --- fridge bay
   const fw = F.w * CM, fcd = F.caseD * CM, fdd = F.doorD * CM, fh = F.h * CM;
   const fz = z + fw / 2;
-  box(g, M.steel, fcd, fh, fw, fcd / 2, fh / 2 + 0.02, fz);
-  const doorY = fh / 2 + 0.02;
-  const doorX = fcd + fdd / 2;
-  box(g, M.steel, fdd, fh, fw / 2 - 0.004, doorX, doorY, fz - fw / 4);
-  box(g, M.steel, fdd, fh, fw / 2 - 0.004, doorX, doorY, fz + fw / 4);
-  // water/ice dispenser recess on the north door half
-  box(g, M.blackGlass, 0.012, 0.38, 0.30, doorX + fdd / 2, 1.15, fz - fw / 4);
-  // panel above fridge up to tall height
-  box(g, M.tall, d, hTall - fh - 0.04, fw, d / 2, fh + 0.04 + (hTall - fh - 0.04) / 2, fz);
+  if (F.integrated) {
+    // integrated columns: appliances hidden behind matching tall fronts
+    box(g, M.tall, d, hTall, fw, d / 2, hTall / 2, fz);
+    for (const s of [-1, 1]) {
+      frontColumn(g, M, M.tall, { w: fw / 2, yBottom: 0.06, yTop: fh + 0.06, rows: [1], x: face, z: fz + s * fw / 4, rot: Math.PI / 2 });
+      frontColumn(g, M, M.tall, { w: fw / 2, yBottom: fh + 0.11, yTop: hTall, rows: [1], x: face, z: fz + s * fw / 4, rot: Math.PI / 2 });
+    }
+  } else {
+    // freestanding: case recessed to the wall, doors proud of the tall fronts
+    box(g, M.steel, fcd, fh, fw, fcd / 2, fh / 2 + 0.02, fz);
+    const doorY = fh / 2 + 0.02;
+    const doorX = fcd + fdd / 2;
+    box(g, M.steel, fdd, fh, fw / 2 - 0.004, doorX, doorY, fz - fw / 4);
+    box(g, M.steel, fdd, fh, fw / 2 - 0.004, doorX, doorY, fz + fw / 4);
+    // water/ice dispenser recess on the north door half (external types only)
+    if (F.dispenser === 'plumbed' || F.dispenser === 'tank')
+      box(g, M.blackGlass, 0.012, 0.38, 0.30, doorX + fdd / 2, 1.15, fz - fw / 4);
+    // panel above fridge up to tall height
+    if (hTall - fh > 0.08)
+      box(g, M.tall, d, hTall - fh - 0.04, fw, d / 2, fh + 0.04 + (hTall - fh - 0.04) / 2, fz);
+  }
   z += fw;
 
   // --- oven tower (single oven at chest height — no microwave), unless the

@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import GUI from 'lil-gui';
 
-import { DEFAULTS, VARIATIONS, FINISHES, RULES, APPLIANCES, HOBS, CM } from './params.js';
+import { DEFAULTS, VARIATIONS, FINISHES, RULES, APPLIANCES, FRIDGES, HOBS, CM } from './params.js';
 import { buildMaterials } from './materials.js';
 import { buildRoom, FRAME } from './room.js';
 import { buildKitchen } from './kitchen.js';
@@ -141,7 +141,11 @@ function updateChecks() {
     S.dwLocation === 'counter'
       ? `std DW on ~${Math.max(0, dwNiche - 87.5).toFixed(0)}cm platform, fronts align`
       : 'door front ~75–160cm — zero bending, next to the sink counter');
-  html += row('warn', 'Fridge', `${APPLIANCES.fridge.label} — plumbed water at party wall; hob duct/recirc in island floor`);
+  const fr = FRIDGES[S.fridgeChoice];
+  const proud = Math.round((fr.caseD + fr.doorD - S.tallDepth - 2) * 10) / 10;
+  html += row(proud <= 1 ? true : proud <= 5 ? 'warn' : false,
+    `Fridge ${proud > 0 ? `+${proud}cm proud` : 'flush'}`, fr.label);
+  html += row('warn', 'Services', `${fr.dispenser === 'plumbed' ? 'fridge water line at party wall · ' : ''}hob duct/recirc in island floor`);
   CHECK_EL.innerHTML = `<h3>Live clearance checks</h3>${html}
     <div class="note">Room: ${S.mirrored ? 'S1/west half (mirrored)' : 'S2/east half (as drawn)'} · ceiling 273cm · glazing 235cm</div>`;
 }
@@ -184,6 +188,7 @@ fd.add(S, 'overhang', 20, 45, 1).name('seat overhang').onChange(rb);
 fd.add(S, 'seatSpacing', 60, 100, 1).name('seat spacing').onChange(rb);
 fd.add(S, 'dwLocation', { 'in wall counter (by sink)': 'counter', 'raised in tall column': 'tallWall' }).name('dishwasher').onChange(rb);
 fd.add(S, 'hobChoice', Object.keys(HOBS)).name('hob').onChange(rb);
+fd.add(S, 'fridgeChoice', Object.keys(FRIDGES)).name('fridge').onChange(rb);
 fd.add(S, 'upperDepth', 30, 50, 1).name('upper cab depth').onChange(rb);
 fd.add(S, 'ovenPlacement', { 'tower (chest height)': 'tower', 'low, under counter': 'base' }).name('oven').onChange(rb);
 fd.add(S, 'northGap', 40, 110, 1).name('north passage').onChange(rb);
