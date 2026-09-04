@@ -131,7 +131,7 @@ export const DEFAULTS = {
   hobChoice: 'Bosch 70 venting (PVQ731F15E)',
   upperDepth: 42,          // overhead cabinets over the sink counter — deeper for glasses
   ovenPlacement: 'tower',  // 'tower' (chest height column) | 'base' (low, under counter → longer worktop)
-  fridgeChoice: 'Samsung RS8000 (deep)',
+  fridgeChoice: 'Gorenje NRS9182VB', // ≤69.5 depth budget; best dispenser (water+ice) in that class
   pendantColor: '#ffd9a0', // Philips Hue pendants over the island — live color
   pendantIntensity: 1.0,   // 0 = off, 1 = full
   northGap: 75,            // passage island → pantry wall (shramba door there)
